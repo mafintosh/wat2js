@@ -1,6 +1,6 @@
 {
   "name": "wast2js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Compile WebAssembly .wat files to a common js module",
   "main": "index.js",
   "dependencies": {
