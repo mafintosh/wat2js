@@ -46,7 +46,7 @@ function loadWebAssembly (opts) {
 }
 
 function toUint8Array (s) {
-  if (process.browser) new Uint8Array(atob(s).split('').map(charCodeAt))
+  if (typeof atob === 'function') return new Uint8Array(atob(s).split('').map(charCodeAt))
   return new (require('buf' + 'fer').Buffer)(s, 'base64')
 }
 
