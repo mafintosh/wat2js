@@ -75,7 +75,8 @@ Note that if your WASM is larger than 4kb, some browsers might force async loadi
   exports: {...}, // exports WASM functions
   memory: Uint8Array, // exports.memory wrapped in a uint8array (if exported)
   buffer: Uint8Array, // the WASM module as a buffer
-  onload: onload(cb) // function you can call to wait for async loading
+  onload: onload(cb), // function you can call to wait for async loading
+  realloc: realloc(bytes) // reallocate the memory buffer to a new size
 }
 ```
 
