@@ -61,7 +61,7 @@ Options include:
 ``` js
 {
   imports: {...} // import objected forwared to WASM,
-  async: false // force async loading.
+  async: false // force sync loading.
 }
 ```
 
