@@ -1,5 +1,5 @@
 {
-  "name": "wast2js",
+  "name": "wat2js",
   "version": "1.1.0",
   "description": "Compile WebAssembly .wat files to a common js module",
   "main": "index.js",
@@ -9,10 +9,10 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/mafintosh/wast2js.git"
+    "url": "https://github.com/mafintosh/wat2js.git"
   },
   "bin": {
-    "wast2js": "./index.js"
+    "wat2js": "./index.js"
   },
   "keywords": [
     "WebAssembly",
@@ -23,7 +23,7 @@
   "author": "Mathias Buus (@mafintosh)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mafintosh/wast2js/issues"
+    "url": "https://github.com/mafintosh/wat2js/issues"
   },
-  "homepage": "https://github.com/mafintosh/wast2js"
+  "homepage": "https://github.com/mafintosh/wat2js"
 }

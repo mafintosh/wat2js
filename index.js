@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-process.title = 'wast2js'
+process.title = 'wat2js'
 
 var minimist = require('minimist')
 var proc = require('child_process')
@@ -17,7 +17,7 @@ var inp = argv._[0]
 
 if (!inp) {
   console.error(`
-Usage: wast2js [input.wat file] [options...]
+Usage: wat2js [input.wat file] [options...]
   --output, -o [output.js file]
   --watch,  -w [recompile on input.wat change]
   `.trim())
@@ -35,7 +35,7 @@ compile()
 function compile () {
   var tmp = path.join(os.tmpdir(), 'out.wasm.' + Date.now())
 
-  proc.spawn('wast2wasm', [inp, '-o', tmp], {stdio: 'inherit'}).on('exit', function (code) {
+  proc.spawn('wat2wasm', [inp, '-o', tmp], {stdio: 'inherit'}).on('exit', function (code) {
     if (code) {
       if (argv.watch) return
       process.exit(1)

@@ -1,9 +1,9 @@
-# wast2js
+# wat2js
 
 Compile WebAssembly .wat files to a common js module
 
 ```
-npm install -g wast2js
+npm install -g wat2js
 ```
 
 See https://github.com/WebAssembly/wabt for more WebAssembly goodies.
@@ -31,7 +31,7 @@ First make a basic WebAssembly .wat file
 Then compile it to WebAssembly and wrap in a common js loader by doing
 
 ``` sh
-wast2js example.wat -o example.js
+wat2js example.wat -o example.js
 ```
 
 To run the WebAssembly simply do:
@@ -47,7 +47,7 @@ console.log('1 + 2 = ' + result)
 To keep recompiling the `.wat` file when it changes pass the `--watch` option as well
 
 ``` sh
-wast2js example.wat -o example.js --watch # recompile when example.wat changes
+wat2js example.wat -o example.js --watch # recompile when example.wat changes
 ```
 
 ## API
