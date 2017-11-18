@@ -14,12 +14,18 @@ function loadWebAssembly (opts) {
     buffer: wasm,
     memory: null,
     exports: null,
+    realloc: realloc,
     onload: onload
   }
 
   onload(function () {})
 
   return mod
+
+  function realloc (size) {
+    mod.exports.memory.grow(Math.ceil(Math.abs(size - mod.memory.length) / 65536))
+    mod.memory = new Uint8Array(mod.exports.memory.buffer)
+  }
 
   function onload (cb) {
     if (mod.exports) return cb()
