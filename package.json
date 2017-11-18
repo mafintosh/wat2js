@@ -4,7 +4,8 @@
   "description": "Compile WebAssembly .wat files to a common js module",
   "main": "index.js",
   "dependencies": {
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "wasm2js": "~0.1.1"
   },
   "devDependencies": {},
   "repository": {
