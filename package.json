@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "minimist": "^1.2.0",
-    "wasm2js": "~0.1.1"
+    "wasm2js": "~0.2.0"
   },
   "devDependencies": {},
   "repository": {
