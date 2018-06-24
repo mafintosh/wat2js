@@ -3,12 +3,19 @@
 process.title = 'wat2js'
 
 var minimist = require('minimist')
-var proc = require('child_process')
 var os = require('os')
 var path = require('path')
 var fs = require('fs')
 var wasm2js = require('wasm2js')
+var Promise = global.Promise
 
+if (typeof Promise !== 'function') {
+  Promise = {
+    resolve: function() {}
+  }
+}
+
+var wabt = require('./third_party/libwabt')
 var argv = minimist(process.argv.slice(2), {
   alias: {output: 'o', watch: 'w'},
   boolean: ['w']
@@ -34,22 +41,15 @@ if (argv.watch) fs.watch(inp, compile)
 compile()
 
 function compile () {
-  var tmp = path.join(os.tmpdir(), 'out.wasm.' + Date.now())
+  var file = fs.readFileSync(inp, { encoding: 'utf8' })
+  var filename = path.basename(inp)
+  var wasmModule = wabt.parseWat(filename, file)
 
-  proc.spawn('wat2wasm', [inp, '-o', tmp], {stdio: 'inherit'}).on('exit', function (code) {
-    if (code) {
-      if (argv.watch) return
-      process.exit(1)
-    }
+  wasmModule.validate()
 
-    var wasm = fs.readFileSync(tmp)
-    fs.unlink(tmp, noop)
+  var wasm = Buffer.from(wasmModule.toBinary({log: false, write_debug_names: false}).buffer)
+  var src = wasm2js(wasm)
 
-    var src = wasm2js(wasm)
-
-    if (argv.output) fs.writeFileSync(argv.output, src)
-    else process.stdout.write(src)
-  })
+  if (argv.output) fs.writeFileSync(argv.output, src)
+  else process.stdout.write(src)
 }
-
-function noop () {}
