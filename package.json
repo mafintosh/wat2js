@@ -1,6 +1,6 @@
 {
   "name": "wat2js",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Compile WebAssembly .wat files to a common js module",
   "main": "index.js",
   "dependencies": {
