@@ -11,14 +11,15 @@ var wasm2js = require('wasm2js')
 
 var argv = minimist(process.argv.slice(2), {
   alias: {output: 'o', watch: 'w'},
-  boolean: ['w']
+  boolean: ['w'],
+  '--': true
 })
 
 var inp = argv._[0]
 
 if (!inp) {
   console.error(`
-Usage: wat2js [input.wat file] [options...]
+Usage: wat2js [input.wat file] [options...] -- [wat2wasm options...]
   --output, -o [output.js file]
   --watch,  -w [recompile on input.wat change]
   `.trim())
@@ -36,7 +37,8 @@ compile()
 function compile () {
   var tmp = path.join(os.tmpdir(), 'out.wasm.' + Date.now())
 
-  proc.spawn('wat2wasm', [inp, '-o', tmp], {stdio: 'inherit'}).on('exit', function (code) {
+  var wat2wasmArgv = [inp, '-o', tmp].concat(argv['--'])
+  proc.spawn('wat2wasm', wat2wasmArgv, {stdio: 'inherit'}).on('exit', function (code) {
     if (code) {
       if (argv.watch) return
       process.exit(1)

@@ -50,6 +50,12 @@ To keep recompiling the `.wat` file when it changes pass the `--watch` option as
 wat2js example.wat -o example.js --watch # recompile when example.wat changes
 ```
 
+You can also pass arguments to `wat2wasm`:
+
+``` sh
+wat2js example.wat -o example.js --watch -- --debug-names # add debug names section
+```
+
 ## API
 
 #### `var mod = require('./compiled-wat.js')([options])`
