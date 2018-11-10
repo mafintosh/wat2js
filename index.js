@@ -38,7 +38,9 @@ function compile () {
   var tmp = path.join(os.tmpdir(), 'out.wasm.' + Date.now())
 
   var wat2wasmArgv = [inp, '-o', tmp].concat(argv['--'])
-  proc.spawn(os.platform() === 'win32' ? 'wat2wasm.cmd' : 'wat2wasm', wat2wasmArgv, {stdio: 'inherit'}).on('exit', function (code) {
+  var wat2wasm = path.join(__dirname, 'node_modules', '.bin', os.platform() === 'win32' ? 'wat2wasm.cmd' : 'wat2wasm')
+
+  proc.spawn(wat2wasm, wat2wasmArgv, {stdio: 'inherit'}).on('exit', function (code) {
     if (code) {
       if (argv.watch) return
       process.exit(1)
