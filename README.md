@@ -8,8 +8,6 @@ npm install -g wat2js
 
 See https://github.com/WebAssembly/wabt for more WebAssembly goodies.
 
-Currently requires the `wat2wasm` program to be installed globally. If you don't have that already you can get that by installing the webassembly binary toolkit by using this little [helper](https://github.com/mafintosh/webassembly-binary-toolkit)
-
 ## Usage
 
 First make a basic WebAssembly .wat file
