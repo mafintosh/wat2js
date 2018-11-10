@@ -8,7 +8,12 @@
     "wasm2js": "~0.2.0",
     "wat2wasm": "~1.0.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "tape": "^4.9.1"
+  },
+  "scripts": {
+    "test": "tape ./test.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/mafintosh/wat2js.git"
